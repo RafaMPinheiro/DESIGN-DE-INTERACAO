@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/cadastro.css" />
+    <link rel="stylesheet" href="css/semifinais.css" />
+    <title>Trabalho 1</title>
+  </head>
+  <body>
+    <main>
+      <section id="cadastro">
+        <h1 id="title">Cadastros</h1>
+        <p id="messageCadastro"></p>
+        <section class="jogos">
+          <div class="jogo1">
+            <div class="time1">
+              <input
+                type="text"
+                id="time1"
+                placeholder="Nome do time 1"
+                minlength="4"
+                pattern="[a-z\s]+$"
+                required
+              />
+              <input
+                type="color"
+                id="colorTime1"
+                placeholder="Sua cor"
+                required
+              />
+            </div>
+            <div class="time2">
+              <input
+                type="text"
+                id="time2"
+                placeholder="Nome do time 2"
+                minlength="4"
+                pattern="[a-z\s]+$"
+                required
+              />
+              <input
+                type="color"
+                id="colorTime2"
+                placeholder="Sua cor"
+                required
+              />
+            </div>
+          </div>
+          <div class="jogo2">
+            <div class="time3">
+              <input
+                type="text"
+                id="time3"
+                placeholder="Nome do time 3"
+                minlength="4"
+                pattern="[a-z\s]+$"
+                required
+              />
+              <input
+                type="color"
+                id="colorTime3"
+                placeholder="Sua cor"
+                required
+              />
+            </div>
+            <div class="time4">
+              <input
+                type="text"
+                id="time4"
+                placeholder="Nome do time 4"
+                minlength="4"
+                pattern="[a-z\s]+$"
+                required
+              />
+              <input
+                type="color"
+                id="colorTime4"
+                placeholder="Sua cor"
+                required
+              />
+            </div>
+          </div>
+        </section>
+        <section>
+          <button id="botaoCadastro">Enviar</button>
+        </section>
+      </section>
+      <section id="semifinais">
+        <h1>Semifinais</h1>
+        <p id="messageSemi"></p>
+        <section class="jogos">
+          <div id="jogo1">
+            <h2>Jogo 1</h2>
+            <div class="time1">
+              <h5 id="nomeTime1"></h5>
+              <input
+                type="number"
+                id="golsTime1"
+                placeholder="Gols do time 1"
+                max="100"
+                min="0"
+                type="number"
+                value="0"
+              />
+            </div>
+            <div class="time2">
+              <h5 id="nomeTime2"></h5>
+              <input
+                type="number"
+                id="golsTime2"
+                placeholder="Gols do time 2"
+                max="100"
+                min="0"
+                type="number"
+                value="0"
+              />
+            </div>
+          </div>
+          <div id="jogo2">
+            <h2>Jogo 2</h2>
+            <div class="time3">
+              <h5 id="nomeTime3"></h5>
+              <input
+                type="number"
+                id="golsTime3"
+                placeholder="Gols do time 3"
+                max="100"
+                min="0"
+                type="number"
+                value="0"
+              />
+            </div>
+            <div class="time4">
+              <h5 id="nomeTime4"></h5>
+              <input
+                type="number"
+                id="golsTime4"
+                placeholder="Gols do time 4"
+                max="100"
+                min="0"
+                type="number"
+                value="0"
+              />
+            </div>
+          </div>
+        </section>
+        <section>
+          <button id="botaoSemifinais">Enviar</button>
+        </section>
+      </section>
+    </main>
+
+    <script src="js/index.js"></script>
+  </body>
+</html>
