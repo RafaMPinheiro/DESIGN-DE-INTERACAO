@@ -10,6 +10,12 @@ function disableElements(...elements) {
   });
 }
 
+// Função para desabilitar botoes
+function disableButtons(element) {
+  element.disabled = true;
+  element.style.cursor = "not-allowed";
+}
+
 // Nomes dos times
 const times = [];
 for (let i = 1; i <= 4; i++) {
@@ -24,9 +30,10 @@ for (let i = 1; i <= 4; i++) {
 
 const messageCadastro = getElement("messageCadastro");
 const messageSemi = getElement("messageSemi");
-const button = getElement("botaoCadastro");
+const buttonCadastro = getElement("botaoCadastro");
+const buttonSemi = getElement("botaoSemifinais");
 
-button.addEventListener("click", function () {
+buttonCadastro.addEventListener("click", function () {
   const nomes = times.map((time) => time.value);
 
   if (new Set(nomes).size !== 4) {
@@ -46,6 +53,7 @@ button.addEventListener("click", function () {
     );
 
     disableElements(...times, ...cores);
+    disableButtons(buttonCadastro);
   }
 });
 
@@ -66,7 +74,6 @@ function Semifinais(
   colorTime4
 ) {
   const semifinais = getElement("semifinais");
-  const buttonSemi = getElement("botaoSemifinais");
 
   const nomesTimes = [
     getElement("nomeTime1"),
@@ -83,7 +90,7 @@ function Semifinais(
   semifinais.style.display = "flex";
 
   buttonSemi.addEventListener("click", function () {
-    ResultadoSemi(colorTime1, colorTime2, colorTime3, colorTime4);
+    ResultadoSemi(colorTime1, colorTime2, colorTime3, colorTime4, buttonSemi);
   });
 }
 
@@ -110,6 +117,7 @@ function ResultadoSemi(colorTime1, colorTime2, colorTime3, colorTime4) {
   setBorderStyle(jogo2, golsT3.value, golsT4.value, colorTime3, colorTime4);
 
   disableElements(golsT1, golsT2, golsT3, golsT4);
+  disableButtons(buttonSemi);
 }
 
 function Finais(timeChave1, timeChave2) {}
