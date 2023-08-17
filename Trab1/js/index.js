@@ -30,8 +30,10 @@ for (let i = 1; i <= 4; i++) {
 
 const messageCadastro = getElement("messageCadastro");
 const messageSemi = getElement("messageSemi");
+const messageFinal = getElement("messageFinal");
 const buttonCadastro = getElement("botaoCadastro");
 const buttonSemi = getElement("botaoSemifinais");
+const buttonFinal = getElement("buttonFinal");
 
 buttonCadastro.addEventListener("click", function () {
   const nomes = times.map((time) => time.value);
@@ -96,17 +98,17 @@ function Semifinais(
 
 // Resultados das semifinais
 function ResultadoSemi(colorTime1, colorTime2, colorTime3, colorTime4) {
-  const golsTimes = [
+  let golsTimes = [
     getElement("golsTime1"),
     getElement("golsTime2"),
     getElement("golsTime3"),
     getElement("golsTime4"),
   ];
 
-  const jogo1 = getElement("jogo1");
-  const jogo2 = getElement("jogo2");
+  let jogo1 = getElement("jogo1");
+  let jogo2 = getElement("jogo2");
 
-  const [golsT1, golsT2, golsT3, golsT4] = golsTimes;
+  let [golsT1, golsT2, golsT3, golsT4] = golsTimes;
 
   if (golsT1.value === golsT2.value || golsT3.value === golsT4.value) {
     messageSemi.innerHTML = "Não pode haver empate (adicione os pênaltis)";
@@ -116,8 +118,58 @@ function ResultadoSemi(colorTime1, colorTime2, colorTime3, colorTime4) {
   setBorderStyle(jogo1, golsT1.value, golsT2.value, colorTime1, colorTime2);
   setBorderStyle(jogo2, golsT3.value, golsT4.value, colorTime3, colorTime4);
 
+  final.style.display = "flex";
+
+  Finais(
+    golsT1.value > golsT2.value ? times[0].value : times[1].value,
+    golsT3.value > golsT4.value ? times[2].value : times[3].value,
+    golsT1.value > golsT2.value ? colorTime1 : colorTime2,
+    golsT3.value > golsT4.value ? colorTime3 : colorTime4
+  );
+
   disableElements(golsT1, golsT2, golsT3, golsT4);
   disableButtons(buttonSemi);
 }
 
-function Finais(timeChave1, timeChave2) {}
+function Finais(timeChave1, timeChave2, colorTime1, colorTime2) {
+  const golsT1 = getElement("golsTime1Final");
+  const golsT2 = getElement("golsTime2Final");
+
+  const time1Final = getElement("time1Final");
+  const time2Final = getElement("time2Final");
+
+  time1Final.innerHTML = timeChave1;
+  time2Final.innerHTML = timeChave2;
+
+  const final = getElement("final");
+  final.style.display = "flex";
+
+  const buttonFinal = getElement("buttonFinal");
+  buttonFinal.addEventListener("click", function () {
+    ResultadoFinal(golsT1, golsT2, colorTime1, colorTime2);
+  });
+}
+
+function ResultadoFinal(golsT1, golsT2, colorTime1, colorTime2) {
+  const jogoFinal = getElement("jogoFinal");
+
+  if (golsT1.value === golsT2.value) {
+    messageFinal.innerHTML = "Não pode haver empate (adicione os pênaltis)";
+    return;
+  } else {
+    setBorderStyle(
+      jogoFinal,
+      golsT1.value,
+      golsT2.value,
+      colorTime1,
+      colorTime2
+    );
+
+    getElement("campeao").innerHTML = `Vencedor ${
+      golsT1.value > golsT2.value ? time1Final.innerHTML : time2Final.innerHTML
+    }`;
+
+    disableElements(golsT1, golsT2);
+    disableButtons(buttonFinal);
+  }
+}

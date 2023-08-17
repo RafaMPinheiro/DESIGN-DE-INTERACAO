@@ -33,6 +33,11 @@ section {
   display: none;
 }
 
+#final {
+  margin: 2vh 0;
+  display: none;
+}
+
 .jogos {
   display: flex;
   flex-direction: row;
