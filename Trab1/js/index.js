@@ -168,6 +168,9 @@ function ResultadoFinal(golsT1, golsT2, colorTime1, colorTime2) {
     getElement("campeao").innerHTML = `Vencedor ${
       golsT1.value > golsT2.value ? time1Final.innerHTML : time2Final.innerHTML
     }`;
+    getElement("campeao").style.color = `${
+      golsT1.value > golsT2.value ? colorTime1 : colorTime2
+    }`;
 
     disableElements(golsT1, golsT2);
     disableButtons(buttonFinal);
