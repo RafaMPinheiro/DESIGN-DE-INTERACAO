@@ -57,3 +57,9 @@ section {
   width: 100%;
   gap: 0.5rem;
 }
+
+@media screen and (max-width: 400px) {
+  .jogos {
+    flex-direction: column;
+  }
+}
