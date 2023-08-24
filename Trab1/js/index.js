@@ -128,6 +128,7 @@ function ResultadoSemi(colorTime1, colorTime2, colorTime3, colorTime4) {
   setBorderStyle(jogo2, golsT3.value, golsT4.value, colorTime3, colorTime4);
 
   final.style.display = "flex"; // exibe a final
+  messageSemi.innerHTML = ""; // limpa a mensagem de erro
 
   Finais(
     golsT1.value > golsT2.value ? times[0].value : times[1].value,
@@ -151,6 +152,7 @@ function Finais(timeChave1, timeChave2, colorTime1, colorTime2) {
   time2Final.innerHTML = timeChave2;
 
   const final = getElement("final");
+
   final.style.display = "flex"; // exibe a final
 
   const buttonFinal = getElement("buttonFinal");
@@ -177,6 +179,8 @@ function ResultadoFinal(golsT1, golsT2, colorTime1, colorTime2) {
       colorTime1,
       colorTime2
     );
+
+    messageFinal.innerHTML = ""; // limpa a mensagem de erro
 
     getElement("campeao").innerHTML = `Vencedor ${
       golsT1.value > golsT2.value ? time1Final.innerHTML : time2Final.innerHTML
