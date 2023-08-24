@@ -9,6 +9,10 @@ function disableElements(...elements) {
     element.disabled = true;
   });
 }
+// Função para definir estilo de borda com base na pontuação
+function setBorderStyle(element, value1, value2, color1, color2) {
+  element.style.background = `${value1 > value2 ? color1 : color2}99`;
+}
 
 // Função para desabilitar botoes
 function disableButtons(element) {
@@ -36,12 +40,12 @@ const buttonSemi = getElement("botaoSemifinais");
 const buttonFinal = getElement("buttonFinal");
 
 buttonCadastro.addEventListener("click", function () {
-  const nomes = times.map((time) => time.value);
+  const nomes = times.map((time) => time.value); // obtem os nomes dos times
 
-  if (new Set(nomes).size !== 4) {
-    messageCadastro.innerHTML = "Não pode haver times iguais";
+  if (new Set(nomes).size !== 4) { // verifica se há 4 times únicos
+    messageCadastro.innerHTML = "Não pode haver times iguais"; // se não houver, exibe mensagem de erro
   } else {
-    const [t1, t2, t3, t4] = nomes;
+    const [t1, t2, t3, t4] = nomes; // se houver, define os nomes dos times
 
     Semifinais(
       t1,
@@ -54,15 +58,11 @@ buttonCadastro.addEventListener("click", function () {
       cores[3].value
     );
 
-    disableElements(...times, ...cores);
-    disableButtons(buttonCadastro);
+    disableElements(...times, ...cores); // desabilita os inputs de nome e cor
+    disableButtons(buttonCadastro); // desabilita o botão de cadastro
   }
 });
 
-// Função para definir estilo de borda com base na pontuação
-function setBorderStyle(element, value1, value2, color1, color2) {
-  element.style.background = `${value1 > value2 ? color1 : color2}99`;
-}
 
 // Semifinais
 function Semifinais(
@@ -82,14 +82,14 @@ function Semifinais(
     getElement("nomeTime2"),
     getElement("nomeTime3"),
     getElement("nomeTime4"),
-  ];
+  ]; // obtem os nomes dos times
 
-  nomesTimes[0].innerHTML = t1;
-  nomesTimes[1].innerHTML = t2;
+  nomesTimes[0].innerHTML = t1; // mostra os nomes dos times
+  nomesTimes[1].innerHTML = t2; 
   nomesTimes[2].innerHTML = t3;
   nomesTimes[3].innerHTML = t4;
 
-  semifinais.style.display = "flex";
+  semifinais.style.display = "flex"; // exibe as semifinais
 
   buttonSemi.addEventListener("click", function () {
     ResultadoSemi(colorTime1, colorTime2, colorTime3, colorTime4, buttonSemi);
@@ -103,12 +103,12 @@ function ResultadoSemi(colorTime1, colorTime2, colorTime3, colorTime4) {
     getElement("golsTime2"),
     getElement("golsTime3"),
     getElement("golsTime4"),
-  ];
+  ]; // obtem os gols dos times
 
-  let jogo1 = getElement("jogo1");
-  let jogo2 = getElement("jogo2");
+  let jogo1 = getElement("jogo1"); // obtem os jogos
+  let jogo2 = getElement("jogo2"); // obtem os jogos
 
-  let [golsT1, golsT2, golsT3, golsT4] = golsTimes;
+  let [golsT1, golsT2, golsT3, golsT4] = golsTimes; // obtem os gols dos times
 
   if (golsT1.value === golsT2.value || golsT3.value === golsT4.value) {
     messageSemi.innerHTML = "Não pode haver empate (adicione os pênaltis)";
@@ -118,7 +118,7 @@ function ResultadoSemi(colorTime1, colorTime2, colorTime3, colorTime4) {
   setBorderStyle(jogo1, golsT1.value, golsT2.value, colorTime1, colorTime2);
   setBorderStyle(jogo2, golsT3.value, golsT4.value, colorTime3, colorTime4);
 
-  final.style.display = "flex";
+  final.style.display = "flex"; // exibe a final
 
   Finais(
     golsT1.value > golsT2.value ? times[0].value : times[1].value,
@@ -132,17 +132,17 @@ function ResultadoSemi(colorTime1, colorTime2, colorTime3, colorTime4) {
 }
 
 function Finais(timeChave1, timeChave2, colorTime1, colorTime2) {
-  const golsT1 = getElement("golsTime1Final");
-  const golsT2 = getElement("golsTime2Final");
+  const golsT1 = getElement("golsTime1Final"); // obtem os gols dos times
+  const golsT2 = getElement("golsTime2Final"); // obtem os gols dos times
 
-  const time1Final = getElement("time1Final");
-  const time2Final = getElement("time2Final");
+  const time1Final = getElement("time1Final"); // obtem os nomes dos times
+  const time2Final = getElement("time2Final"); // obtem os nomes dos times
 
   time1Final.innerHTML = timeChave1;
   time2Final.innerHTML = timeChave2;
 
   const final = getElement("final");
-  final.style.display = "flex";
+  final.style.display = "flex"; // exibe a final
 
   const buttonFinal = getElement("buttonFinal");
   buttonFinal.addEventListener("click", function () {
@@ -167,10 +167,10 @@ function ResultadoFinal(golsT1, golsT2, colorTime1, colorTime2) {
 
     getElement("campeao").innerHTML = `Vencedor ${
       golsT1.value > golsT2.value ? time1Final.innerHTML : time2Final.innerHTML
-    }`;
+    }`; // exibe o campeão
     getElement("campeao").style.color = `${
       golsT1.value > golsT2.value ? colorTime1 : colorTime2
-    }`;
+    }`; // exibe o campeão
 
     disableElements(golsT1, golsT2);
     disableButtons(buttonFinal);
