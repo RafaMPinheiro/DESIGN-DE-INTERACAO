@@ -113,6 +113,9 @@ function ResultadoSemi(colorTime1, colorTime2, colorTime3, colorTime4) {
   if (golsT1.value === golsT2.value || golsT3.value === golsT4.value) {
     messageSemi.innerHTML = "Não pode haver empate (adicione os pênaltis)";
     return;
+  } else if (golsT1.value >= 10 || golsT2.value >= 10 || golsT3.value >= 10 || golsT4.value >= 10) {
+    messageSemi.innerHTML = "Não pode haver mais de 10 gols";
+    return;
   }
 
   setBorderStyle(jogo1, golsT1.value, golsT2.value, colorTime1, colorTime2);
@@ -155,6 +158,9 @@ function ResultadoFinal(golsT1, golsT2, colorTime1, colorTime2) {
 
   if (golsT1.value === golsT2.value) {
     messageFinal.innerHTML = "Não pode haver empate (adicione os pênaltis)";
+    return;
+  } else if (golsT1.value >= 10 || golsT2.value >= 10) {
+    messageSemi.innerHTML = "Não pode haver mais de 10 gols";
     return;
   } else {
     setBorderStyle(
