@@ -5,6 +5,10 @@ function getElemento(id) {
 
 const btnAvancar = getElemento("btnAvanca");
 
+// Recuperar os dados do campeonato e dos times do localStorage
+const dadosCampeonato = JSON.parse(localStorage.getItem("Campeonato"));
+const dadosTimes = JSON.parse(localStorage.getItem("Times"));
+
 // Função para atualizar os pontos e estatísticas dos times
 function atualizarEstatisticas(time1, time2, golsTime1, golsTime2) {
   const vitoria = 3;
@@ -39,13 +43,13 @@ btnAvancar.addEventListener("click", (e) => {
     let nomeTime2 = getElemento(`nomeTime2${i}`).textContent;
 
     // Encontrar os times no array
-    let time1 = timesData.find((time) => time.nome === nomeTime1);
-    let time2 = timesData.find((time) => time.nome === nomeTime2);
+    let time1 = dadosTimes.find((time) => time.nome === nomeTime1);
+    let time2 = dadosTimes.find((time) => time.nome === nomeTime2);
 
     atualizarEstatisticas(time1, time2, golsTime1, golsTime2);
   }
 
-  localStorage.setItem("Times", JSON.stringify(timesData));
+  localStorage.setItem("Times", JSON.stringify(dadosTimes));
 
   window.location.href = "classificacao.html";
 });
