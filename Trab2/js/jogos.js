@@ -6,7 +6,6 @@ function getElemento(id) {
 const btnAvancar = getElemento("btnAvanca");
 
 // Recuperar os dados do campeonato e dos times do localStorage
-const dadosCampeonato = JSON.parse(localStorage.getItem("Campeonato"));
 const dadosTimes = JSON.parse(localStorage.getItem("Times"));
 
 // Função para atualizar os pontos e estatísticas dos times
