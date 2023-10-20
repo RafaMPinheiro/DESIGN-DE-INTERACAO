@@ -29,7 +29,7 @@ function atualizarEstatisticas(time1, time2, golsTime1, golsTime2) {
 btnAvancar.addEventListener("click", (e) => {
   e.preventDefault();
 
-  for (let i = 1; i <= dadosTimes.qntdJogos; i++) {
+  for (let i = 1; i <= dadosCampeonato.qntdJogos; i++) {
     // Obter os gols de cada time
     let golsTime1 = Number(getElemento(`golsTime1${i}`).value);
     let golsTime2 = Number(getElemento(`golsTime2${i}`).value);
