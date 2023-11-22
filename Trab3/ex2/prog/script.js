@@ -1,56 +1,82 @@
+// Obtém as referências para as divs onde os resultados serão exibidos
 const divConsultaUm = document.getElementById("consulta1");
 const divConsultaDois = document.getElementById("consulta2");
 const divConsultaTres = document.getElementById("consulta3");
 
-const showConsultaUm = () => {
-  fetch("https://brasilapi.com.br/api/banks/v1").then((response) => {
-    response.json().then((data) => {
-      let number = Math.floor(Math.random() * data.length);
-      divConsultaUm.innerHTML = `
-        <h2>Consulta 1</h2>
-        <p>Nome: ${data[number].name}</p>
-        <p>Nome completo: ${data[number].fullName}</p>
-        <p>ISPB: ${data[number].ispb}</p>
-      `;
-    });
-  });
+// Função para exibir resultados da Consulta 1
+const showConsultaUm = async () => {
+  try {
+    const response = await fetch("https://brasilapi.com.br/api/banks/v1");
+    const data = await response.json();
+
+    // Gera um número aleatório para selecionar um item aleatório do array
+    const randomIndex = Math.floor(Math.random() * data.length);
+
+    // Atualiza a div com os resultados da Consulta 1
+    divConsultaUm.innerHTML = `
+      <h2>Consulta 1</h2>
+      <p>Nome: ${data[randomIndex].name}</p>
+      <p>Nome completo: ${data[randomIndex].fullName}</p>
+      <p>ISPB: ${data[randomIndex].ispb}</p>
+    `;
+  } catch (error) {
+    result.innerHTML = `<p class="text-danger">Erro na Consulta 1: ${error}</p>`;
+  }
 };
 
-const showConsultaDois = () => {
-  fetch("https://brasilapi.com.br/api/cvm/corretoras/v1").then((response) => {
-    response.json().then((data) => {
-      let number = Math.floor(Math.random() * data.length);
-      let endereco;
-      if (data[number]?.complemento) {
-        endereco = `${data[number].logradouro}, ${data[number].complemento}, ${data[number].bairro}, ${data[number].municipio} - ${data[number].uf}`;
-      } else {
-        endereco = `${data[number].logradouro}, ${data[number].bairro}, ${data[number].municipio} - ${data[number].uf}`;
-      }
-      divConsultaDois.innerHTML = `
-        <h2>Consulta 2</h2>
-        <p>Nome social: ${data[number].nome_social}</p>
-        <p>Nome comercial: ${data[number].nome_comercial}</p>
-        <p>Endereço: ${endereco}</p>
-      `;
-    });
-  });
+// Função para exibir resultados da Consulta 2
+const showConsultaDois = async () => {
+  try {
+    const response = await fetch(
+      "https://brasilapi.com.br/api/cvm/corretoras/v1"
+    );
+    const data = await response.json();
+
+    // Gera um número aleatório para selecionar um item aleatório do array
+    const randomIndex = Math.floor(Math.random() * data.length);
+    let endereco;
+
+    // Verifica se o campo 'complemento' existe antes de incluí-lo no endereço
+    if (data[randomIndex]?.complemento) {
+      endereco = `${data[randomIndex].logradouro}, ${data[randomIndex].complemento}, ${data[randomIndex].bairro}, ${data[randomIndex].municipio} - ${data[randomIndex].uf}`;
+    } else {
+      endereco = `${data[randomIndex].logradouro}, ${data[randomIndex].bairro}, ${data[randomIndex].municipio} - ${data[randomIndex].uf}`;
+    }
+
+    // Atualiza a div com os resultados da Consulta 2
+    divConsultaDois.innerHTML = `
+      <h2>Consulta 2</h2>
+      <p>Nome social: ${data[randomIndex].nome_social}</p>
+      <p>Nome comercial: ${data[randomIndex].nome_comercial}</p>
+      <p>Endereço: ${endereco}</p>
+    `;
+  } catch (error) {
+    result.innerHTML = `<p class="text-danger">Erro na Consulta 2: ${error}</p>`;
+  }
 };
 
-const showConsultaTres = () => {
-  fetch("https://brasilapi.com.br/api/taxas/v1").then((response) => {
-    response.json().then((data) => {
-      let number = Math.floor(Math.random() * data.length);
-      console.log(number);
-      divConsultaTres.innerHTML = `
-        <h2>Consulta 3</h2>
-        <p>Nome: ${data[number].nome}</p>
-        <p>Valor: ${data[number].valor.toLocaleString("pt-br", {
-          style: "currency",
-          currency: "BRL",
-        })}</p>
-      `;
-    });
-  });
+// Função para exibir resultados da Consulta 3
+const showConsultaTres = async () => {
+  try {
+    const response = await fetch("https://brasilapi.com.br/api/taxas/v1");
+    const data = await response.json();
+
+    // Gera um número aleatório para selecionar um item aleatório do array
+    const randomIndex = Math.floor(Math.random() * data.length);
+
+    // Exibe o resultado da Consulta 3, formatando o valor como moeda brasileira
+    divConsultaTres.innerHTML = `
+      <h2>Consulta 3</h2>
+      <p>Nome: ${data[randomIndex].nome}</p>
+      <p>Valor: ${data[randomIndex].valor.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      })}</p>
+    `;
+  } catch (error) {
+    result.innerHTML = `<p class="text-danger">Erro na Consulta 3: ${error}</p>`;
+  }
 };
 
+// Executa todas as consultas e exibe os resultados quando todas estiverem prontas
 Promise.all([showConsultaUm(), showConsultaDois(), showConsultaTres()]);

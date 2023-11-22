@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Consulta de CEP</title>
+    <title>Consulta de Municípios</title>
     <link
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       rel="stylesheet"
@@ -11,23 +11,23 @@
   </head>
   <body class="container mt-5">
     <header class="text-center">
-      <h1>Formulário de Consulta de CEP</h1>
+      <h1>Formulário de Consulta de Municípios</h1>
     </header>
 
     <main>
-      <h2 class="mt-4 mb-3">Consulta de CEP</h2>
       <form id="form" class="mb-4">
+        <h2 class="mt-4 mb-3">Consulta de Municípios</h2>
         <div class="form-group">
-          <label for="cep">CEP:</label>
-          <input type="text" class="form-control" name="cep" id="cep" />
+          <label for="uf">Sigla UF:</label>
+          <input type="text" class="form-control" name="uf" id="uf" />
         </div>
 
         <button type="submit" class="btn btn-primary">Consultar</button>
       </form>
 
-      <div id="result"></div>
+      <section id="result" class="mt-4"></section>
     </main>
 
-    <script src="../js/form1.js"></script>
+    <script src="../js/form3.js"></script>
   </body>
 </html>

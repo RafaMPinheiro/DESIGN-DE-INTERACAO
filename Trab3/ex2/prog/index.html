@@ -3,28 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Consultas via código</title>
-    <style>
-      .consultas {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      .consultas > div {
-        flex: 1 0 300px;
-        padding: 10px;
-        border: 1px solid black;
-      }
-    </style>
+    <title>Consultas via Código</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <h1>Consulta via programação</h1>
-    <div class="consultas">
-      <div id="consulta1"></div>
-      <div id="consulta2"></div>
-      <div id="consulta3"></div>
-    </div>
+  <body class="container mt-5">
+    <header class="text-center mb-5">
+      <h1>Consultas via Programação</h1>
+    </header>
+
+    <main>
+      <div class="row">
+        <div class="col-md-4 mb-4 h-200">
+          <div class="consulta p-3 bg-light rounded">
+            <p id="consulta1"></p>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 h-200">
+          <div class="consulta p-3 bg-light rounded">
+            <p id="consulta2"></p>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 h-200">
+          <div class="consulta p-3 bg-light rounded">
+            <p id="consulta3"></p>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <script src="./script.js"></script>
   </body>
