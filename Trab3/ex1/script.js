@@ -13,7 +13,7 @@ const capitalizeStr = (str) => {
 // Função assíncrona que obtém os países a partir de um arquivo JSON
 const getCountries = async () => {
   try {
-    const response = await fetch("/Trab3/paises.json");
+    const response = await fetch("paises.json");
     const countries = await response.json();
 
     countriesArray.push(...countries);
