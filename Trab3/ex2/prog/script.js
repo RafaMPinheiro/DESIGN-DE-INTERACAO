@@ -14,7 +14,6 @@ const showConsultaUm = async () => {
 
     // Atualiza a div com os resultados da Consulta 1
     divConsultaUm.innerHTML = `
-      <h2>Consulta 1</h2>
       <p>Nome: ${data[randomIndex].name}</p>
       <p>Nome completo: ${data[randomIndex].fullName}</p>
       <p>ISPB: ${data[randomIndex].ispb}</p>
@@ -45,7 +44,6 @@ const showConsultaDois = async () => {
 
     // Atualiza a div com os resultados da Consulta 2
     divConsultaDois.innerHTML = `
-      <h2>Consulta 2</h2>
       <p>Nome social: ${data[randomIndex].nome_social}</p>
       <p>Nome comercial: ${data[randomIndex].nome_comercial}</p>
       <p>Endereço: ${endereco}</p>
@@ -66,7 +64,6 @@ const showConsultaTres = async () => {
 
     // Exibe o resultado da Consulta 3, formatando o valor como moeda brasileira
     divConsultaTres.innerHTML = `
-      <h2>Consulta 3</h2>
       <p>Nome: ${data[randomIndex].nome}</p>
       <p>Valor: ${data[randomIndex].valor.toLocaleString("pt-br", {
         style: "currency",

@@ -25,7 +25,6 @@ form.addEventListener("submit", async (e) => {
 
     // Atualiza o elemento de resultado com os dados retornados da API
     result.innerHTML = `
-      <h2>Resultado</h2>
       <p>CEP: ${cepFormat(data.cep)}</p>
       <p>Logradouro: ${data.street}</p>
       <p>Complemento: ${data.complement || "N/A"}</p>
